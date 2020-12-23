@@ -1,0 +1,18 @@
+{
+    "presets": [
+        ["@babel/preset-env", {
+            "modules": false,
+            "useBuiltIns": "usage"
+        }]
+    ],
+    "plugins": [
+        ["@babel/plugin-transform-runtime", {
+            "useESModules": true
+        }],
+        ["@babel/plugin-syntax-dynamic-import"],
+        ["component", {
+            "libraryName": "element-ui",
+            "styleLibraryName": "theme-chalk"
+        }]
+    ]
+}
