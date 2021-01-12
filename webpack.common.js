@@ -12,6 +12,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const AutoDllPlugin = require('autodll-webpack-plugin');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 //Loader
 const styleLoader = {
@@ -100,7 +101,6 @@ module.exports = {
             },
             {
                 test: /\.js$/,
-                exclude: /node_modules/,
                 include: resolvePath('src'),
                 use: [
                     'cache-loader',
@@ -161,7 +161,9 @@ module.exports = {
         new VueLoaderPlugin(),
         new webpack.DefinePlugin({
             ENV_MODE: JSON.stringify(ENV_MODE)
-        })
+        }),
+        new webpack.IgnorePlugin(/\.\/locale/, /moment/), // 打包时忽略moment语言包
+        new ProgressBarPlugin()
     ],
     performance: {
         hints: false
